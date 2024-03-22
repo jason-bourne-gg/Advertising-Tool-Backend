@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "amc-backend.fullname" . }}
+  labels:
+    {{- include "amc-backend.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.containerPort }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "amc-backend.selectorLabels" . | nindent 4 }}

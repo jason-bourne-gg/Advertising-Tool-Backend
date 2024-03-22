@@ -1,0 +1,10 @@
+{
+    "APP_SETTING":"settings.context_config.BaseConfig",
+    "redirect_uri":"http://localhost",
+    "OKTA_SETTINGS":{
+        "ORG_URL":"https://dev-45140213.okta.com/",
+        "CLIENT_ID":"0oa7w02c1eFVGAfBO5d7",
+        "CLIENT_SECRET":"Rxo3k1PAPuBn973JerWT05UJDWYlti-iJMIhMg9v",
+        "OKTA_REDIRECT_URI":"http://localhost/authorization-code/callback"
+    }
+}

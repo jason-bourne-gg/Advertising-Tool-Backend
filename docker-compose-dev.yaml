@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CONFIG_FILE_LOCATION=/app/src/resources/dev.config.json
+      - ENV=dev
+      - DB_USER=postgres
+      - DB_PASS=India123
+      - DB_INSTANCE_HOST=db
+      - DB_NAME=amc
+      - FLASK_APP=app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  db:
+    container_name: db
+    image: postgres
+    restart: always
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data/
+      - ./db:/docker-entrypoint-initdb.d/
+    environment:
+      - POSTGRES_PASSWORD=India123
+      - POSTGRES_USER=postgres
+    ports:
+      - "5432:5432"
+volumes:
+  postgres_data_prod:
+    driver: local

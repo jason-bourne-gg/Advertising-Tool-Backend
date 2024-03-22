@@ -1,0 +1,37 @@
+{
+    "APP_SETTING":"settings.context_config.BaseConfig",
+    "redirect_uri":"REDIRECT_URI_DEV",
+    "OKTA_SETTINGS":{
+        "ORG_URL":"ORG_URL",
+        "CLIENT_ID":"APPLICATION_CLIENT_ID_DEV",
+        "CLIENT_SECRET":"APPLICATION_SECRET_KEY_DEV",
+        "OKTA_REDIRECT_URI":"OKTA_REDIRECT_URI_DEV",
+        "RECKITT_OKTA_API_TOKEN":"RECKITT_OKTA_API_TOKEN"
+    },
+
+    "AZURE_SETTINGS" : {
+        "AZURE_ACC_NAME":"AZURE_ACC_NAME",
+        "AZURE_PRIMARY_KEY":"AZURE_PRIMARY_KEY",
+        "AZURE_CONTAINER":"AZURE_CONTAINER",
+        "AZURE_ACCOUNT_SAS": "AZURE_ACCOUNT_SAS"
+    },
+
+    "AZURE_DB_SETTINGS" : {
+        "SERVER": "SERVER",
+        "DATABASE":"DATABASE",
+        "USERNAME":"USERNAME",
+        "PASSWORD":"PASSWORD",
+        "DRIVER":"DRIVER"
+    },
+
+    
+    "AMAZON_DSP_SETTINGS" :{
+        "REFRESH_TOKEN" :"REFRESH_TOKEN",
+        "CLIENT_ID" : "CLIENT_ID",
+        "CLIENT_SECRET" : "CLIENT_SECRET",
+        "PROFILE_ID" : "PROFILE_ID",
+        "ADVERTISER_ID" : "ADVERTISER_ID"
+    }
+}
+
+

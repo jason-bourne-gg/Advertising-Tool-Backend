@@ -1,0 +1,194 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  creationTimestamp: null
+  name: cronjob
+spec:
+  schedule: '0 1 * * *'
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: cronjob
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+            - image: rbmatrixamc.azurecr.io/amc-cronjob:12347
+              imagePullPolicy: Always
+              name: cronjob
+              volumeMounts:
+              - name: secrets-store-inline
+                mountPath: "/mnt/secrets-store"
+                readOnly: true
+              env:
+                - name: ENV
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-env
+                - name: FLASK_APP
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-flask-app
+                - name: REDIRECT_URI
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-redirect-uri
+                - name: ORG_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-org-url
+                - name: APPLICATION_CLIENT_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-application-client-id
+                - name: APPLICATION_SECRET_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-application-secret-key
+                - name: OKTA_REDIRECT_URI
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-okta-redirect-uri
+                - name: AZURE_ACC_NAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-az-acc-name
+                - name: AZURE_PRIMARY_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-az-primary-key
+                - name: AZURE_CONTAINER
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-az-container
+                - name: AZURE_ACCOUNT_SAS
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-az-acc-sas
+                - name: REFRESH_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-refresh-token-ui
+                - name: CLIENT_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-client-id-ui
+                - name: CLIENT_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-client-secret-ui
+                - name: PROFILE_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-profileid
+                - name: ADVERTISER_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-advertiserid
+                - name: SHARED_CLIENT_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-shared-client-secret
+                - name: TENET_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-tenetid
+                - name: CC_API_CLIENT_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-cc-api-clientid
+                - name: CC_API_CLIENT_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-cc-api-client-secret
+                - name: SUBSCRIPTION_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-subscription-id
+                - name: RESOURCE_GROUP
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-rg
+                - name: DATA_FACTORY_NAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-adf
+                - name: SERVER
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-sql-server
+                - name: DATABASE
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-sql-db
+                - name: DRIVER
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-sql-driver
+                - name: OKTA_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-okta-key
+                - name: OKTA_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-okta-secret
+                - name: PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-sql-password
+                - name: USERNAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-sql-uid
+                - name: RECKITT_OKTA_API_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: amc-dev-kv-secrets
+                      key: sc-amc-dev-reckitt-okta-api-token
+              resources: {}
+          volumes:
+            - name: secrets-store-inline
+              csi:
+                driver: secrets-store.csi.k8s.io
+                readOnly: true
+                volumeAttributes:
+                  secretProviderClass: "rbmatrixkv"
+                nodePublishSecretRef:                       # Only required when using service principal mode
+                  name: secrets-store-creds 
+          restartPolicy: OnFailure
+status: {}
